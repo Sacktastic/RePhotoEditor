@@ -1,0 +1,57 @@
+{% extends "base_logins.html" %}
+{% load static %}
+{% block formblock %}
+    <h2 class="title text-center">Sign Up for RePhotoEditor</h2>                 
+    <div class="center-align">
+        <div class="form-container">
+            <form class="login-form" method="POST" action="{% url 'signup' %}"> 
+                {% csrf_token %}
+                <div class="row"> <!-- Row for form fields -->
+                    <div class="col-lg-6">
+                        <div class="fieldwrapper">
+                            {{ form.first_name.errors }}
+                            <label for="id_first_name">First Name</label><br>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="fieldwrapper">
+                            {{ form.last_name.errors }}
+                            <label for="id_last_name">Last Name</label><br>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="fieldwrapper">
+                            {{ form.username.errors }}
+                            <label for="id_username">Username</label><br>
+                            {{ form.username }}
+                        </div>
+                        <div class="fieldwrapper">
+                            {{ form.email.errors }}
+                            <label for="id_email">Email</label><br>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="fieldwrapper">
+                            {{ form.password1.errors }}
+                            <label for="id_password1">Password</label><br>
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="fieldwrapper">
+                            {{ form.password2.errors }}
+                            <label for="id_password2">Re-enter Password</label><br>
+                            {{ form.password2 }}
+                        </div>
+                    </div>                        
+                </div>
+                <button type="submit" class="btn btn-block btn-cta-primary">Sign up!</button>
+                <p class="lead">Already have a RePhotoEditor account? <br /><a class="signup-link" href="login">Log in</a></p>  
+            </form>
+        </div><!--//form-container-->
+    </div><!--//row-->
+{% endblock %}

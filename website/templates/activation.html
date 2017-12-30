@@ -1,0 +1,25 @@
+{% extends "base_logins.html" %}
+{% load static %}
+{% block formblock %}
+    <h2 class="title text-center">Email Activation for RePhotoEditor</h2>                 
+    <div class="center-align">
+        <div class="form-container">
+            {% if activation_expired %}
+                <div>
+                    {% csrf_token %}
+                    <p>Uh oh! Your email activation link was expired. Please click the button below resend the activation email!</p>
+                    <br>
+                    <p><a href="new-activation-link/?user_id={{ user.get_username }}">Click here to resend the activation link</a></p>
+                </div>
+            {% elif profile.user.is_active%}
+                <div>
+                    <p>Success! Your email has been activated! You can now submit your orders.</p>
+                </div>
+            {% elif already_active %}
+                <div>
+                    <p>Your account has already been activated!</p>
+                </div>
+            {% endif %}
+        </div><!--//form-container-->
+    </div><!--//row-->
+{% endblock %}
