@@ -15,10 +15,14 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Features</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Pricing</a></li>                     
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">About Us</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item nav-item-cta last"><a class="btn btn-cta btn-cta-secondary" href="{% url 'signup' %}">Place Orders</a></li>
+                        {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
                         <li class="nav-item nav-item-cta last"><a class="btn btn-cta btn-cta-secondary" href="{% url 'signup' %}">Sign Up Free</a></li>
+                        {% endif %}
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
             </nav><!--//main-nav-->                     
@@ -37,10 +41,13 @@
     
     <section class="promo section section-on-bg">
         <div class="container text-center">                
-            <h2 class="title">When you want your photos to look<br />professional, you use RePhotoEditor!</h2>
-            <p class="intro">RePhotoEditor will take care of photo editing for you <br /> and you can spend more time promoting your business</p>
-            <p><a class="btn btn-cta btn-cta-primary" href="{% url 'signup' %}">Sign Up Now!</a></p>   
-            <button type="button" class="play-trigger btn-link " data-toggle="modal" data-target="#modal-video" ><i class="fa fa-youtube-play"></i> Watch the video</button>
+            <h2 class="title">When you want your photos to look<br />professional, you use <span style="color:#22CCB8">RePhotoEditor</span>!</h2>
+            <p class="intro">RePhotoEditor will take care of the photo editing for you and you can spend more time promoting your business</p>
+            {% if user.is_authenticated %}
+                <p><a class="btn btn-cta btn-cta-primary" href="{% url 'signup' %}">Submit Orders Here!</a></p>
+            {% else %}
+                <p><a class="btn btn-cta btn-cta-primary" href="{% url 'signup' %}">Sign Up Now!</a></p>
+            {% endif %}   
         </div><!--//container-->
     </section><!--//promo-->
     
@@ -55,22 +62,12 @@
                     <div class="content col-12 col-lg-4">
                         <h3 class="title">Save you time and effort</h3>
                         <div class="desc">
-                            <p>Explain one of your product benefits here. Let users know how they can benefit using your product. It’s also a good idea to back it up with a testimonial or tweet from your users.</p>
-                            <p>The original PSD of the graphic is included in the package. You can easily customise the PSD to meet your needs.</p>
+                            <p>When you have a real estate business to run, it can be time consuming to handle photo editing on your own.  With our experienced editors, you can save many hours of time and effort.</p>
+                            <p>After going through our simple account creation, all you have to do is submit your photos with the edits you want, and we will take care of the rest.</p>
                         </div>
-                        <div class="quote">
-                            <div class="quote-profile">
-                                <img class="img-fluid img-circle" src="assets/images/people/profile-s-1.png" alt="" />
-                            </div><!--//profile-->
-                            <div class="quote-content">
-                                <blockquote><p><a href="https://twitter.com/3rdwave_themes" target="_blank">@velocity</a> Love it! Thank you for making my life easier and saving me time! I’ll definitely recommend it to my friends. :)</p></blockquote>
-                                <p class="source">@LisaW, Bristol</p>
-                            </div><!--//quote-content-->                                     
-                        </div><!--//quote-->                        
                     </div><!--//content-->
                     <figure class="figure offset-lg-1 col-12 col-lg-7">
-                        <img class="img-fluid" src="assets/images/figures/figure-1.png" alt="" />
-                        <figcaption class="figure-caption">(Screenshot: Coral - App &amp; website startup kit) </figcaption>
+                        <img class="img-fluid" src="{% static 'assets/images/mainpage/mainpage1.jpg' %}" alt="Example picture 1" />
                     </figure>
                 </div><!--//item-->
                 
@@ -243,106 +240,6 @@
         </section><!--//cta-section-->
         
     </div><!--//section-wrapper-->
-    
-    <!-- ******FOOTER****** --> 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="container">
-                <div class="row">                    
-                    <div class="footer-col links col-lg-2 col-md-4 col-12">
-                        <div class="footer-col-inner">
-                            <h3 class="title">About us</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Who we are</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Press</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Blog</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Jobs</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Contact us</a></li>
-                            </ul>
-                        </div><!--//footer-col-inner-->
-                    </div><!--//foooter-col-->    
-                    <div class="footer-col links col-lg-2 col-md-4 col-12">
-                        <div class="footer-col-inner">
-                            <h3 class="title">Product</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa fa-caret-right"></i>How it works</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>API</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Download Apps</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Pricing</a></li>
-                            </ul>
-                        </div><!--//footer-col-inner-->
-                    </div><!--//foooter-col-->              
-                    <div class="footer-col links col-lg-2 col-md-4 col-12 sm-break">
-                        <div class="footer-col-inner">
-                            <h3 class="title">Support</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Help</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Documentation</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Terms of services</a></li>
-                                <li><a href="#"><i class="fa fa-caret-right"></i>Privacy</a></li>
-                            </ul>
-                        </div><!--//footer-col-inner-->            
-                    </div><!--//foooter-col-->   
-                    <div class="footer-col connect col-12 col-lg-6">
-                        <div class="footer-col-inner">
-                            <ul class="social list-inline">
-                                <li class="list-inline-item"><a href="https://twitter.com/3rdwave_themes" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>        
-                                <li class="list-inline-item row-end"><a href="#"><i class="fa fa-rss"></i></a></li>             
-                            </ul>
-                            <div class="form-container">
-                                <p class="intro">Stay up to date with the latest news and offers from Velocity</p>
-                                <form class="signup-form navbar-form">
-                                    <div class="form-group ">
-                                        <input type="text" class="form-control" placeholder="Enter your email">
-                                    </div>   
-                                    <button type="submit" class="btn btn-cta btn-cta-primary">Subscribe Now</button>                                 
-                                </form>                               
-                            </div><!--//subscription-form-->
-                        </div><!--//footer-col-inner-->
-                    </div><!--//foooter-col-->
-                    <div class="clearfix"></div> 
-                </div><!--//row-->
-                <div class="row has-divider">
-                    <div class="footer-col download col-12 col-lg-6">
-                        <div class="footer-col-inner">
-                            <h3 class="title">Mobile apps</h3>
-                            <ul class="list-unstyled download-list">
-                                <li><a class="btn btn-ghost" href="#"><i class="fa fa-apple"></i><span class="text">Download for iOS</span> </a></li>
-                                <li><a class="btn btn-ghost" href="#"><i class="fa fa-android"></i><span class="text">Download for Android</span></a></li>
-                                <li><a class="btn btn-ghost" href="#"><i class="fa fa-windows"></i><span class="text">Windows coming soon...</span></a></li>
-                            </ul>
-                        </div><!--//footer-col-inner-->
-                    </div><!--//download-->
-                    <div class="footer-col contact col-12 col-lg-6">
-                        <div class="footer-col-inner">
-                            <h3 class="title">Contact us</h3>                          
-                            <p class="adr clearfix">
-                                <i class="fa fa-map-marker pull-left"></i>        
-                                <span class="adr-group pull-left">       
-                                    <span class="street-address">College Green</span><br>
-                                    <span class="region">56 College Green Road</span><br>
-                                    <span class="postal-code">BS1 XR18</span><br>
-                                    <span class="country-name">UK</span>
-                                </span>
-                            </p>
-                            <p class="tel"><i class="fa fa-phone"></i>0800 123 4567</p>
-                            <p class="email"><i class="fa fa-envelope-o"></i><a href="#">enquires@website.com</a></p> 
-                            <a href="https://twitter.com/3rdwave_themes" class="twitter-follow-button" data-show-count="false">Follow @3rdwave_themes</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>                        
-                        </div><!--//footer-col-inner-->
-                    </div><!--//contact-->
-                </div>
-            </div><!--//container-->
-        </div><!--//footer-content-->
-        <div class="bottom-bar">
-            <div class="container">
-                <small class="copyright">Template Copyright @ <a href="http://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a></small>                
-            </div><!--//container-->
-        </div><!--//bottom-bar-->
-    </footer><!--//footer-->
     
     <!-- Video Modal -->
     <div class="modal modal-video" id="modal-video" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">

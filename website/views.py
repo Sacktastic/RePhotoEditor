@@ -13,8 +13,7 @@ from hashlib import sha1
 from datetime import timezone
 
 def index(request):
-    template = loader.get_template('mainpage.html')
-    return HttpResponse(template.render())
+    return render(request, 'mainpage.html')
 
 def signup(request):
     if request.method == 'POST':# Basically means, after they click the sign in button on this view
@@ -38,7 +37,7 @@ def signup(request):
 
             user = authenticate(username=datas['username'], password=datas['password1'])# Create user auth
             login(request, user)# Sign in user
-            return redirect('../website')# Redirect to page after sign in
+            return render(request, 'activation_sent.html')# Redirect to page after sign in
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -63,10 +62,10 @@ def activation(request):
         already_active = True# Display : error message
     return render(request, 'activation.html', locals())# Locals passes all local variables to view
 
-def new_activation_link(request, user_id):
+def new_activation_link(request):
     form = SignUpForm()
     datas={}
-    user = User.objects.get(id=user_id)
+    user = request.GET.get('user_id', '')
     if user is not None and not user.is_active:
         datas['username']=user.username
         datas['email']=user.email

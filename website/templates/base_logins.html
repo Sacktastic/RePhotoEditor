@@ -15,16 +15,20 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Features</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Pricing</a></li>                     
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">About Us</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item nav-item-cta last"><a class="btn btn-cta btn-cta-secondary" href="{% url 'signup' %}">Place Orders</a></li>
+                        {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
                         <li class="nav-item nav-item-cta last"><a class="btn btn-cta btn-cta-secondary" href="{% url 'signup' %}">Sign Up Free</a></li>
+                        {% endif %}
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
             </nav><!--//main-nav-->                     
         </div><!--//container-->
     </header><!--//header-->
-    
+
     <div class="upper-wrapper">
         <!-- ******Login Section****** --> 
         <section class="login-section access-section section">
